@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Interactive card details form</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; padding-top: 40px;}
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="container">
+
+      <div class="sessao_esquerda">
+
+        <div class="cartoes">
+
+          <div class="cartao_frente" id="frente">
+
+            <img src="./images/bg-card-front.png" alt="cartao-frente">
+  
+            <div class="container_cartao">
+              <img class="logo" src="./images/card-logo.svg" alt="logo">
+              <h1 id="numero_cartao">0000 0000 0000 0000</h1>
+              <div class="info">
+                <p id="nome_cartao">Jane Appleseed</p> 
+                <p> <span id="mes_cartao">00</span> / <span id="ano_cartao">00</span></p> 
+              </div>
+              
+            </div>
+  
+          </div>
+
+          <div class="cartao_costas">
+            <img src="./images/bg-card-back.png" alt="cartao-costas">
+            <span id="cvv_cartao">000</span>
+          </div>
+        </div>
+        
+        
+      </div>
+
+      <div id="formulario">
+        <div class="form">
+          <form method="post">
+          <div>
+            <label for="nome_input">Nome do Titular</label>
+            <input
+              name="nome_titular"
+              type="text" 
+              class="input-lg mb" 
+              id="nome_input" 
+              placeholder="Ex:  Jane Appleseed"
+              required
+              autocomplete="off"
+              oninput="recebeNome()"
+              >
+              <p class="erro erro-nome-invalido">Este campo não pode conter numeros.</p>
+              <p class="erro erro-nome-vazio">Este campo é obrigatório.</p>
+          </div>
+
+          <div>
+            <label for="numero_input">Número do Cartão</label>
+            <input 
+              name="numero" 
+              type="text" 
+              class="input-lg mb" 
+              id="numero_input" 
+              placeholder="EX: 1234 5678 9123 0000"
+              minlength="19"
+              maxlength="19"
+              required
+              autocomplete="off"
+              oninput="recebeNumeros()"
+              >
+              <p class="erro erro-numero-invalido">Este campo deve conter apenas números.</p>
+              <p class="erro erro-numero-vazio">Este campo é obrigatório.</p>
+          </div>
+
+          <div>
+            <label for="">Validade</label>
+
+            <input 
+              type="number" 
+              class="input-sm mb validade" 
+              name="" id="validade_mes" 
+              placeholder="MM" 
+              minlength="2" 
+              maxlength="2" 
+              required 
+              autocomplete="off"
+              oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); recebeMes()">
+            <input 
+              type="number" 
+              class="input-sm mb validade"
+              name="" 
+              id="validade_ano" 
+              placeholder="AA" 
+              minlength="2" 
+              maxlength="2"
+              autocomplete="off" 
+              required 
+              oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); recebeAno()"
+              >
+              <p class="erro erro-data-vazia">Por favor, preencha corretamente os campos.</p>
+
+            <label for="cvv_input">Código de Segurança</label>
+            <input 
+            type="number" 
+            class="input-sm mb" 
+            name="cvv" 
+            id="cvv_input" 
+            placeholder="CVV" 
+            minlength="3" 
+            maxlength="3" 
+            autocomplete="off"
+            required 
+            oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); recebeCodigo()"
+            >
+            <p class="erro erro-cvv-vazio">Por favor, preencha corretamente os campos.</p>
+          </div>
+
+          <button type="button" id="botao" class="btn"><h3 style="color: white;" onclick="validaDados()">Confirmar</h3></button>
+        </form>
+        </div>
+        
+      </div>
+      <div class="wrapper">
+        <div class="completo">
+          <div class="mensagem-completo">
+            <img src="./images/icon-complete.svg" alt="completo">
+            <h1>Obrigado!</h1>
+            <p>Você adicionou os detalhes do seu cartão com sucesso.</p>
+            <button class="btn" id="continuar" onclick="fecharPopUp()">continuar</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    
+  </main>
+
+  <script src="scripts.js"></script>
+
+
+
+
+
+
+  <!-- Completed state start 
+
+  Thank you!
+  We've added your card details
+  Continue-->
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://leonardo-arcano-portfolio-front-end.netlify.app/">Leonardo Arcano</a>.
+  </div>
+</body>
+</html>
